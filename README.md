@@ -48,7 +48,9 @@ library(tseries)
 
 #Load data
 cof <- read.csv("http://christophpfeiffer.org/wp-content/uploads/2012/11/coffee_data.csv", header=T,sep=";")
+
 cof <- cof[complete.cases(cof),]
+
 names(cof)[1] <- "Date"
 
 #Adjust Date format
@@ -56,7 +58,9 @@ cof["Date"]<- paste(sub("M","-",cof$Date),"-01",sep="")
 
 #Visualize
 plot(as.Date(cof$Date),cof$Arabica,type="l",col="black",lwd=2)
+
 lines(as.Date(cof$Date),cof$Robusta,col="blue",lty=2,lwd=1)
+
 legend("topleft",c("Arabica","Robusta"),col=c("black","blue"),lty=c(1,2),lwd=c(2,1),bty="n")
 
 #Possible structural break in 1970s. Therefore only values from 1976:01 onwards are regarded
